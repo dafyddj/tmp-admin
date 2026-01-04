@@ -27,9 +27,10 @@ jobs:
       - run: npm run full-sync
         working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
         env:
-          GH_ORG: ${{ vars.SAFE_SETTINGS_GH_ORG }}
           APP_ID: ${{ vars.SAFE_SETTINGS_APP_ID }}
-          PRIVATE_KEY: ${{ secrets.SAFE_SETTINGS_PRIVATE_KEY }}
           ADMIN_REPO: ${{ vars.SAFE_SETTINGS_ADMIN_REPO || '.github' }}
           CONFIG_PATH: ${{ vars.SAFE_SETTINGS_CONFIG_PATH || 'safe-settings' }}
           DEPLOYMENT_CONFIG_FILE: ${{ github.workspace }}/${{ vars.SAFE_SETTINGS_CONFIG_PATH || 'safe-settings' }}/deployment-settings.yml
+          GH_ORG: ${{ vars.SAFE_SETTINGS_GH_ORG }}
+          LOG_LEVEL: ${{ vars.SAFE_SETTINGS_LOG_LEVEL || 'debug' }}
+          PRIVATE_KEY: ${{ secrets.SAFE_SETTINGS_PRIVATE_KEY }}
