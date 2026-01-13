@@ -1,6 +1,11 @@
 name: Apply Safe Settings
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   apply-safe-settings:
@@ -31,6 +36,7 @@ jobs:
           ADMIN_REPO: ${{ vars.SAFE_SETTINGS_ADMIN_REPO || '.github' }}
           CONFIG_PATH: ${{ vars.SAFE_SETTINGS_CONFIG_PATH || 'safe-settings' }}
           DEPLOYMENT_CONFIG_FILE: ${{ github.workspace }}/${{ vars.SAFE_SETTINGS_CONFIG_PATH || 'safe-settings' }}/deployment-settings.yml
+          FULL_SYNC_NOP: ${{ inputs.dry-run }}
           GH_ORG: ${{ vars.SAFE_SETTINGS_GH_ORG }}
           LOG_LEVEL: ${{ vars.SAFE_SETTINGS_LOG_LEVEL || 'debug' }}
           PRIVATE_KEY: ${{ secrets.SAFE_SETTINGS_PRIVATE_KEY }}
