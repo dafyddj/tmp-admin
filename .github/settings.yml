@@ -1,4 +1,4 @@
-repository: topic:
+repository:
   topics:
     - new-topic
     - another-topic
