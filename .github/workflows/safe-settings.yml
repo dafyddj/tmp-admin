@@ -29,7 +29,8 @@ jobs:
       - uses: actions/setup-node@v6.1.0
       - run: npm install
         working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
-      - run: |
+      - name: Run Safe-Settings Full-Sync
+        run: |
           set +e  # Allow commands to fail
           npm run full-sync
           exit_code=$?
