@@ -29,7 +29,18 @@ jobs:
       - uses: actions/setup-node@v6.1.0
       - run: npm install
         working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
-      - run: npm run full-sync
+      - run: |
+          set +e  # Allow commands to fail
+          npm run full-sync
+          exit_code=$?
+          echo "Full-sync exit code: $exit_code"
+
+          #if [[ "$FULL_SYNC_NOP" == "true" ]]; then
+          #  echo "Dry-run mode — ignoring failure"
+          #  exit 0
+          #fi
+
+          exit $exit_code
         working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
         env:
           APP_ID: ${{ vars.SAFE_SETTINGS_APP_ID }}
