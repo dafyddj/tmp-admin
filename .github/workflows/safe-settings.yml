@@ -36,10 +36,10 @@ jobs:
           exit_code=$?
           echo "Full-sync exit code: $exit_code"
 
-          #if [[ "$FULL_SYNC_NOP" == "true" ]]; then
-          #  echo "Dry-run mode — ignoring failure"
-          #  exit 0
-          #fi
+          if [[ "$FULL_SYNC_NOP" == "true" ]]; then
+            echo "Dry-run mode — ignoring failure"
+            exit 0
+          fi
 
           exit $exit_code
         working-directory: ${{ env.SAFE_SETTINGS_CODE_DIR }}
